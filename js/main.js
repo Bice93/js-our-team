@@ -10,6 +10,10 @@
 // Stampare le stesse informazioni su DOM sottoforma di stringhe
 // BONUS 1:
 // Trasformare la stringa foto in una immagine effettiva
+// BONUS 2:
+// Organizzare i singoli membri in card/schede
+
+
 const teamMembers = [
     {
         nome: ` Wayne Barnett`,
@@ -41,22 +45,42 @@ const teamMembers = [
         ruolo: `Graphic Designer`,
         foto: `./img/barbara-ramos-graphic-designer.jpg`
     },
+    {
+        nome: ` Wayne Barnett`,
+        ruolo: `Founder & CEO`,
+        foto: `./img/wayne-barnett-founder-ceo.jpg`,
+    },
 ];
 console.log(teamMembers)
 
-let boxMembers = document.getElementById(`container_team`);
+// let boxMembers = document.getElementById(`container_team`);
+
+const wrapperCards = document.getElementById(`wrapper_cards`)  //prendo il contenitore delle cards
+
 
 //Stampo in console il nome il ruolo e la foto di tutti i membri del team
 for (let i = 0; i < teamMembers.length; i++) {
-    boxMembers.innerHTML += `
-    ${teamMembers[i].nome} - ${teamMembers[i].ruolo}`;
+     const newElement = document.createElement(`div`);
+     newElement.innerHTML = `<div class="card mb-3 mx-2" style="width: 26rem;">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="${teamMembers[i].foto}" class="img-fluid rounded-start" alt="${teamMembers[i].foto}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h6 class="card-title">${teamMembers[i].nome}</h6>
+                            <h6 class="card-text">${teamMembers[i].ruolo}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    wrapperCards.append(newElement);
+    // boxMembers.innerHTML += `
+    // ${teamMembers[i].nome} - ${teamMembers[i].ruolo}`;
     //console.log(teamMembers[i].foto)
-    const imageMember = document.createElement(`img`);    //BONUS 1
-    imageMember.setAttribute(`src`, teamMembers[i].foto);
-    imageMember.classList.add(`ms_image`)
-    boxMembers.append(imageMember);
-
+    // const imageMember = document.createElement(`img`);    //BONUS 1
+    // imageMember.setAttribute(`src`, teamMembers[i].foto);
+    // imageMember.classList.add(`ms_image`);
+    // wrapperCards.append(imageMember);
     //console.log(`${teamMembers[i].nome} - ${teamMembers[i].ruolo} - ${teamMembers[i].foto} `);
 };
-
-
